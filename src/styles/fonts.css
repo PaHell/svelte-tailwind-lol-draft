@@ -1,0 +1,11 @@
+@font-face {
+      font-family: "Friz Quadrata";
+      font-weight: bold;
+      src: url("/fonts/FrizQuadrataStdMedium.ttf") format("truetype");
+}
+
+@font-face {
+      font-family: "Friz Quadrata";
+      font-weight: normal;
+      src: url("/fonts/FrizQuadrataRegular.ttf") format("truetype");
+}

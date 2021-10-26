@@ -1,0 +1,14 @@
+body,
+#svelte {
+	@apply w-screen h-screen m-0;
+}
+
+input,
+button {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}

@@ -1,0 +1,9 @@
+@import '@fontsource/fira-mono';
+/* tailwind */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* custom */
+@import 'fonts';
+@import 'normalize';
+@import 'layouts';
