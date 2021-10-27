@@ -7,6 +7,9 @@ const config = {
 			//'serif': [''],
 			//'mono': [''],
 		},
+		boxShadow: {
+			'3xl': '0 8px 36px -4px rgba(0, 0, 0, 0.75)',
+		},
 		/*
 		extend: {}
 		*/
