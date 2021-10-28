@@ -19,23 +19,27 @@
 		div(slot="left")
 			.app-player-image-container
 				.app-player-image-crop
-					img(src="/ornn.jpg", alt="#")
+					+if('d.champ')
+						img.champ.text-xs(src="{`/img/champs/${d.champ}.jpg`}",
+							alt="{`icon for champion ${d.champ}`}")
+						+else
+							img.nochamp(src="/img/nochamp.jpg", alt="icon for no champion locked")
 			+if('d.status === "hover"')
 				.app-player-hover
 					img(src="/img/hover.svg", alt="champ hover")
 		.layout-vbox-left(slot="center")
 			p.text-2xl { d.name }
-			p.text-lg.mb-1.text-slate-500 Picking ...
+			p.text-lg.mb-1.text-orange-200 Picking ...
 		.layout-hbox(slot="right")
-			img(src="{`/img/role-${d.role}.png`}", alt="{`role icon ${d.role}`}")
+			img(src="{`/img/roles/${d.role}.png`}", alt="{`role icon ${d.role}`}")
 </template>
 
 <style lang="postcss" global>
 	.app-player {
-		@apply w-96 h-32 bg-slate-900 rounded-md
-            shadow-3xl backdrop-blur-md bg-opacity-25;
+		@apply w-96 h-32 bg-slate-900 rounded
+            shadow-3xl backdrop-blur-md bg-opacity-75 backdrop-saturate-200;
 		text-shadow: 0 1px 4px black;
-		box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 8px 36px -4px rgba(0, 0, 0, 0.75);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 36px -4px rgba(0, 0, 0, 0.75);
 
 		& .layout-bp-left {
 			@apply w-32 h-32 flex flex-col items-center justify-center;
@@ -44,14 +48,19 @@
 				@apply overflow-hidden w-24 h-24 p-1 rounded-full;
 				@apply bg-gradient-to-b from-yellow-800 to-orange-900;
 				box-shadow: 0 0 4px black;
-				
+
 				& .app-player-image-crop {
 					@apply overflow-hidden w-full h-full flex items-center justify-center rounded-full;
-					
+
 					& img {
-						transform: scale(2);
-						@apply h-24 bg-slate-600 mt-12;						
-					}					
+						&.champ {
+							transform: scale(2);
+							@apply h-24 mt-20;
+						}
+						&.nochamp {
+							@apply h-24;
+						}
+					}
 				}
 				&:after {
 					content: '';
@@ -63,10 +72,10 @@
 					box-shadow: inset 0 0 8px 2px black;
 				}
 			}
-		
+
 			& .app-player-hover {
 				@apply -mt-24 relative scale-150;
-				
+
 				& img {
 					@apply h-24;
 					animation: rotate 2s infinite linear;
@@ -74,11 +83,11 @@
 				}
 			}
 		}
-		
+
 		& .layout-bp-center {
 			@apply flex items-center text-white;
 		}
-		
+
 		& .layout-bp-right {
 			@apply flex items-center h-full mr-4;
 

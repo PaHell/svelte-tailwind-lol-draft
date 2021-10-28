@@ -3,8 +3,9 @@
 </script>
 
 <script lang="ts">
+	import { get, API } from '$lib/http';
 	import BorderPane from '$lib/layout/BorderPane.svelte';
-	import Player from '$lib/Player.svelte';
+	import Player from '$lib/components/Player.svelte';
 
 	const playersLeft: [player, player, player, player, player] = [
 		{
@@ -16,7 +17,7 @@
 		{
 			name: 'Muskatnuzz',
 			role: 'jngl',
-			champ: 'yi',
+			champ: 'master-yi',
 			status: 'locked'
 		},
 		{
@@ -38,6 +39,14 @@
 			status: ''
 		}
 	];
+
+	get(API.RIOT_DEV, '/riot/account/v1/accounts/me')
+		.then((data) => {
+			console.log(JSON.stringify(data));
+		})
+		.catch((error) => {
+			console.log(JSON.stringify(error));
+		});
 </script>
 
 <svelte:head>
@@ -46,7 +55,7 @@
 
 <template lang="pug">
 	.app-champion-select
-		div(class="w-9/12 h-4/6")
+		div
 			BorderPane
 				.layout-hbox.w-full.h-full(slot="top")
 				.layout-hbox.w-full.h-full(slot="left")
@@ -59,7 +68,7 @@
 
 <style lang="postcss" global>
 	.app-champion-select {
-		background-image: url('/wallpaper4.jpg');
+		background-image: url('/img/wallpaper/wallpaper4.jpg');
 		@apply bg-cover bg-center w-full h-full flex items-center justify-center bg-slate-800;
 	}
 </style>
