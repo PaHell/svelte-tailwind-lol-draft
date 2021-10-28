@@ -31,7 +31,7 @@
 			p.text-2xl { d.name }
 			p.text-lg.mb-1.text-orange-200 Picking ...
 		.layout-hbox(slot="right")
-			img(src="{`/img/roles/${d.role}.png`}", alt="{`role icon ${d.role}`}")
+			img(src="{`/img/roles/${d.role}.svg`}", alt="{`role icon ${d.role}`}")
 </template>
 
 <style lang="postcss" global>
