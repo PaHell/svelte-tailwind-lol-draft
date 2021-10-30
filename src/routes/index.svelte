@@ -3,50 +3,75 @@
 </script>
 
 <script lang="ts">
-	import { get, API } from '$lib/http';
+	import { getChampions } from '$lib/riot';
 	import BorderPane from '$lib/layout/BorderPane.svelte';
-	import Player from '$lib/components/Player.svelte';
+	import PlayerCard from '$lib/components/PlayerCard.svelte';
 
-	const playersLeft: [player, player, player, player, player] = [
+	const playersLeft: player[] = [
 		{
 			name: 'UwU Yuu & Mi',
 			role: 'top',
-			champ: 'camille',
+			champ: 'Sion',
 			status: 'locked'
 		},
 		{
 			name: 'Muskatnuzz',
 			role: 'jngl',
-			champ: 'master-yi',
+			champ: 'MasterYi',
 			status: 'locked'
 		},
 		{
 			name: 'UwU Kat',
 			role: 'mid',
-			champ: 'katarina',
+			champ: 'Katarina',
 			status: 'hover'
 		},
 		{
-			name: 'UwU Spezial',
+			name: 'UwU ADCurryKing',
 			role: 'adc',
-			champ: 'kaisa',
+			champ: 'Kaisa',
 			status: ''
 		},
 		{
-			name: 'UwU Alpirsbacher',
+			name: 'Babylon BW',
 			role: 'supp',
 			champ: null,
 			status: ''
 		}
 	];
 
-	get(API.RIOT_DEV, '/riot/account/v1/accounts/me')
-		.then((data) => {
-			console.log(JSON.stringify(data));
-		})
-		.catch((error) => {
-			console.log(JSON.stringify(error));
-		});
+	const playersRight: player[] = [
+		{
+			name: 'SJ Haubi',
+			role: 'top',
+			champ: 'Camille',
+			status: 'locked'
+		},
+		{
+			name: 'UwU Senior Hawk',
+			role: 'jngl',
+			champ: 'Kayn',
+			status: 'locked'
+		},
+		{
+			name: 'Orianne Botlane',
+			role: 'mid',
+			champ: 'Orianna',
+			status: 'hover'
+		},
+		{
+			name: 'DavidNoah',
+			role: 'adc',
+			champ: 'Ziggs',
+			status: ''
+		},
+		{
+			name: 'TerrorGamerGirl',
+			role: 'supp',
+			champ: null,
+			status: ''
+		}
+	];
 </script>
 
 <svelte:head>
@@ -55,20 +80,31 @@
 
 <template lang="pug">
 	.app-champion-select
-		div
-			BorderPane
-				.layout-hbox.w-full.h-full(slot="top")
-				.layout-hbox.w-full.h-full(slot="left")
-				.layout-vbox.w-full.h-full.space-y-8(slot="center")
+		BorderPane
+			.layout-hbox.w-full.h-full(slot="top")
+			.layout-vbox.w-full.h-full.pl-8.space-y-8(slot="left")
+				+await('getChampions() then champions')
 					+each('playersLeft as player')
-						Player(d="{player}")
-				.layout-vbox.w-full.h-full(slot="right")
-				.layout-vbox.w-full.h-full(slot="bottom")
+						PlayerCard(
+							rtl="true",
+							player="{player}",
+							champion="{champions[player.champ]}")
+			.layout-vbox.w-full.h-full(slot="center")
+				//img(src="/img/map.png", alt="League of Legends Map 3D")
+			.layout-vbox.w-full.h-full.pr-8.space-y-8(slot="right")
+				+await('getChampions() then champions')
+					+each('playersRight as player')
+						PlayerCard(
+							player="{player}",
+							champion="{champions[player.champ]}")
+			.layout-vbox.w-full.h-full(slot="bottom")
 </template>
 
 <style lang="postcss" global>
 	.app-champion-select {
 		background-image: url('/img/wallpaper/wallpaper4.jpg');
-		@apply bg-cover bg-center w-full h-full flex items-center justify-center bg-slate-800;
+		@apply w-full h-full
+		flex items-center justify-center
+		bg-slate-800 bg-cover bg-center;
 	}
 </style>
