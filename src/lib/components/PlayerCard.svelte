@@ -16,11 +16,11 @@
 </script>
 
 <template lang="pug">
-.app-player(class="{player.status}", class:rtl="{rtl}")
+.app-player.app-blur(class="{player.status}", class:rtl="{rtl}")
 	.app-player-image
 		+if('player.champ')
 			img.champ(
-				src="{champion.img}",
+				src="{champion.img.big}",
 				alt="{`icon for champion ${champion.name}`}"
 			)
 			+else
@@ -39,30 +39,26 @@
 
 <style lang="postcss" global>
 	.app-player {
-		width: 28rem;
-		@apply w-96 h-32 p-4
-		flex flex-row 
-		bg-slate-900 rounded-2xl backdrop-blur-lg bg-opacity-60 backdrop-saturate-200;
-		text-shadow: 0 0 4px rgb(0 0 0 / 75%);
-		box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%), 0 25px 50px -12px rgb(0 0 0 / 0.25);
+		@apply h-28 p-4
+		flex flex-row;
+		width: 21rem;
 
 		& .app-player-image {
-			@apply overflow-hidden w-24 h-24
+			@apply overflow-hidden w-20 h-20
 			flex items-center justify-center
 			rounded-lg shadow-2xl;
 
 			& img.champ {
 				@apply flex-shrink-0;
-				width: 6.6rem;
-				margin-top: 4.5rem;
-				max-width: none;
+				width: 5.5rem;
+				margin-top: 4rem;
 			}
 			& img.nochamp {
 				@apply w-full;
 			}
 			&:after {
 				content: '';
-				@apply fixed block w-24 h-24 rounded-lg;
+				@apply fixed block w-20 h-20 rounded-lg;
 				box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2);
 			}
 		}
@@ -82,7 +78,7 @@
 			@apply flex items-center h-full;
 
 			& img {
-				width: 2.25rem;
+				width: 24px;
 				@apply drop-shadow-2xl;
 			}
 		}

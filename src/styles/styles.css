@@ -1,0 +1,5 @@
+.app-blur {
+      @apply rounded-2xl bg-slate-900 backdrop-blur-lg bg-opacity-60 backdrop-saturate-200;
+      box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%),
+            0 25px 50px rgb(0 0 0 / 0.25);
+}
