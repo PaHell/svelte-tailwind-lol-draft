@@ -1,0 +1,39 @@
+[class^=layout-hbox] {
+      @apply flex flex-row justify-center items-center;
+
+      &[class*=-left] {
+            @apply justify-start;
+      }
+
+      &[class*=-right] {
+            @apply justify-end;
+      }
+
+      &[class*=-top] {
+            @apply items-start;
+      }
+
+      &[class*=-bottom] {
+            @apply items-end;
+      }
+}
+
+[class^=layout-vbox] {
+      @apply flex flex-col justify-center items-center;
+
+      &[class*=-top] {
+            @apply justify-start;
+      }
+
+      &[class*=-bottom] {
+            @apply justify-end;
+      }
+
+      &[class*=-left] {
+            @apply items-start;
+      }
+
+      &[class*=-right] {
+            @apply items-end;
+      }
+}

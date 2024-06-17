@@ -1,0 +1,11 @@
+@import '@fontsource/fira-mono';
+@import '../../node_modules/animate.css/animate.min.css';
+/* tailwind */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* custom */
+@import 'fonts';
+@import 'normalize';
+@import 'layouts';
+@import 'styles';
